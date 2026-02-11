@@ -1,0 +1,58 @@
+<nav class="bg-gray-800 shadow-md px-6 py-4 flex justify-between items-center relative">
+  <div class="text-2xl font-bold text-white">COURSERO</div>
+
+  <!-- Desktop Links -->
+  <div class="hidden md:flex gap-6 text-gray-300 font-medium items-center">
+    <div *ngIf="auth.isLoggedIn()" class="hidden md:flex gap-6">
+    <a routerLink="/home" class="hover:text-teal-500 transition">Home</a>
+    <a href="#" class="hover:text-teal-500 transition">Features</a>
+    <a href="#" class="hover:text-teal-500 transition">Pricing</a>
+    <a href="#" class="hover:text-teal-500 transition">About</a>
+    <button 
+  (click)="onLogout()" 
+          class="bg-teal-500 text-white px-5 py-2 rounded-xl shadow-md 
+          hover:bg-teal-600 hover:shadow-lg 
+          transition duration-300 ease-in-out">
+  Logout
+</button>
+
+    </div>
+    <div *ngIf="!auth.isLoggedIn()" class="hidden md:flex gap-6">
+    <a routerLink="/login" class="hover:text-teal-500 transition">Login</a>
+    <a routerLink="/register" class="hover:text-teal-500 transition">Register</a>
+    </div>
+
+
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <div class="md:hidden relative">
+    <button (click)="toggleMenu()" class="text-gray-300 flex items-center gap-2">
+      Menu
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div *ngIf="menuOpen" class="absolute top-full right-0 mt-2 w-56 bg-gray-700 rounded-lg shadow-lg flex flex-col p-4 gap-3 z-50">
+      <a href="#" class="text-gray-300 hover:text-teal-500 transition">Home</a>
+      <a href="#" class="text-gray-300 hover:text-teal-500 transition">Features</a>
+      <a href="#" class="text-gray-300 hover:text-teal-500 transition">Pricing</a>
+      <a href="#" class="text-gray-300 hover:text-teal-500 transition">About</a>
+      <button class="bg-teal-500 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-orange-500 transition">
+        Login
+      </button>
+    </div>
+  </div>
+</nav>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
