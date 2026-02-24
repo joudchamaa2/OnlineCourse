@@ -1,0 +1,72 @@
+<div class="flex-1 p-8 bg-gray-100 min-h-screen">
+
+  <!-- Title -->
+  <h1 class="text-2xl font-bold mb-6">Edit User</h1>
+
+  <!-- Card -->
+  <div class="bg-white rounded-2xl shadow-md p-6 max-w-2xl">
+
+    <form>
+
+      <!-- Name -->
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">Name</label>
+        <input 
+          type="text"
+          placeholder="Enter name"
+          disabled
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <!-- Email -->
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">Email</label>
+        <input 
+          type="email"
+          disabled
+          placeholder="Enter email"
+          aria-label="User email"
+          class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <!-- Role -->
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">Role</label>
+        
+        <select 
+        [(ngModel)]="role"
+          aria-label="User role"
+          name="role"
+          class="w-full border border-gray-300 rounded-lg px-4 py-2"
+>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+          <option value="indtructor">Instructor</option>
+        </select>
+      </div>
+
+      <!-- Password -->
+
+      <!-- Buttons -->
+      <div class="flex justify-end space-x-3">
+        <button 
+          type="button"
+          class="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-lg transition">
+          Cancel
+        </button>
+
+        <button
+          (click)="editRole()"
+          type="submit"
+          class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition">
+          Update
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

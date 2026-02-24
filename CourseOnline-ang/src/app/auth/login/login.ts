@@ -16,17 +16,23 @@ export class Login{
     email:'',
     password:'',
   }
+  error :any;
   constructor(private http:Server , public router:Router){}
   sendLogin(){
     this.http.login(this.login).subscribe({
       next:(res:any) => {
         console.log('Success:',res);
         localStorage.setItem('token',res.token)
+        localStorage.setItem('role',res.user_info.role);
+        if(res.user_info.role === 'admin'){
+          this.router.navigate(['/admin']);
+        }else{
         this.router.navigate(['/home']);
+        }
       },
       error:(err)=>{
         console.error('Error:',err);
-        alert('Error submiting Data');
+        this.error = err;
       }
     })
   }

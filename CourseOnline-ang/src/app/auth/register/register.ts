@@ -24,7 +24,7 @@ export class Register {
       next:(res:any) => {
         console.log('Success:',res);
         localStorage.setItem('token',res.token);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
         
         
       },

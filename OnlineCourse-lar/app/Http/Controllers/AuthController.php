@@ -29,7 +29,7 @@ class AuthController extends Controller
         ], 500);
         }
     }
-    public function login(Request $request)
+    public function loginPage(Request $request)
 {
     try {
         $fields = $request->validate([
@@ -56,6 +56,7 @@ class AuthController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
+                'role'=>$user->role,
             ],
             'token' => $token,
             'token_type' => 'Bearer',

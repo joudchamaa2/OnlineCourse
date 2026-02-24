@@ -9,6 +9,9 @@ export class Server {
   isLoggedIn():boolean{
     return !!localStorage.getItem('token');
   }
+  isAdmin():Boolean{
+    return localStorage.getItem('role') === 'admin';
+  }
   register(Data:any){
     return this.http.post('http://127.0.0.1:8000/api/auth/register',Data,{
       headers: {
@@ -38,6 +41,14 @@ export class Server {
       }
     }
   );
+}
+Admin(){
+  const token = localStorage.getItem('token');
+  return this.http.get<any>('http://127.0.0.1:8000/api/admin/dashboard',{
+    headers:{
+      'Authorization':`Bearer ${token}`,
+    }
+  });
 }
 
 }
