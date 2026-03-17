@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\HomeImage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,5 +53,123 @@ function editRole(Request $request,User $user) {
         'user' => $user,
     ], 200);
 }
-
+function Courses(){
+    try{
+        $courses = Course::with('user')->get();
+        return response()->json([
+            'courses'=>$courses,
+        ],201);
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+    }
 }
+function DeleteCourse(Course $course){
+   try{ 
+    $deleteId = $course->id;
+    $course->delete();
+    return response()->json([
+        'course_id'=>$deleteId,
+    ],201);
+}catch(\Exception $e){
+    return response()->json([
+        'message'=>$e->getMessage(),
+        'line'=>$e->getLine(),
+    ],500);
+}
+}
+function GetCourseById(Course $course){
+    try{
+        return response()->json([
+            'course'=>$course,
+        ],201);
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+    }
+}
+function updatecourse(Request $request , Course $course){
+    try{
+    $fields = $request->validate([
+        'title'=>['string'],
+        'description'=>['string'],
+        'price'=>['numeric'],
+        'image'=>['nullable','string','mime:jpg,png,jpeg,webp,svg'],
+    ]);
+    if(isset($request->image)){
+
+        $imageName = time().'.'.$fields['image']->extension();
+        $fields['image']->move(public_path('assets/images'), $imageName);
+        $fields['image'] = $imageName;
+        }else{
+            $fields['image'] = $course->image;
+        }
+        $course->update($fields);
+        return response()->json([
+            'message'=>'Course updated successfully',
+            'course'=>$course,
+        ],201);
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+        
+    }
+}
+function image(Request $request){
+
+    $request->validate([
+        'image' => 'required|image|mimes:jpg,png,jpeg,webp,svg,avif|max:2048'
+    ]);
+
+    try {
+
+        if ($request->hasFile('image')) {
+
+            $imageFile = $request->file('image');
+
+            $imageName = time().'.'.$imageFile->extension();
+
+            $imageFile->move(
+                public_path('assets/images'),
+                $imageName
+            );
+
+            $image = HomeImage::create([
+                'image' => $imageName
+            ]);
+
+            return response()->json([
+                'image' => $image,
+            ], 201);
+        }
+
+    } catch (\Exception $e) {
+
+        return response()->json([
+            'message' => $e->getMessage(),
+            'line' => $e->getLine(),
+        ], 500);
+    }
+}
+function images(){
+    try{
+        $images = HomeImage::all();
+        return response()->json([
+            'images'=>$images,
+        ],201);
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+    }
+}
+}
+
+

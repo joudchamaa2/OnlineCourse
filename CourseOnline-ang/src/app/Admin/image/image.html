@@ -1,0 +1,64 @@
+<div class="p-8 bg-gray-100 min-h-screen">
+
+  <!-- Page Title -->
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">
+    Manage Images
+  </h1>
+
+  <!-- Upload Section -->
+  <div class="bg-white rounded-2xl shadow-lg p-6 mb-10 max-w-xl">
+
+    <h2 class="text-xl font-semibold mb-4">
+      Upload New Image
+    </h2>
+
+    <form (ngSubmit)="upload()" class="space-y-4">
+
+      <input
+        type="file"
+        name="image"
+        placeholder="Choose an image file"
+        (change)="onFileChange($event)"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 text-white py-2 rounded-lg
+               hover:bg-indigo-700 transition">
+        Upload Image
+      </button>
+
+    </form>
+
+    <!-- Message -->
+    <p *ngIf="message"
+       class="mt-4 text-center font-medium text-green-600">
+      {{ message }}
+    </p>
+
+  </div>
+
+  <!-- Images Grid -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+    <!-- Example Image Card (later replace with *ngFor) -->
+    <div *ngFor="let image of images"
+      class="bg-white rounded-2xl shadow-md overflow-hidden
+             hover:shadow-xl hover:-translate-y-1 transform
+             transition duration-300">
+
+      <img
+        [src]="'http://localhost:8000/assets/images/' + image.image"
+        alt="Image"
+        class="w-full h-40 object-cover"
+      />
+
+      
+
+    </div>
+
+  </div>
+
+</div>

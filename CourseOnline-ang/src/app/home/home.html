@@ -12,15 +12,15 @@
         <button class="bg-teal-500 text-gray-900 px-6 py-4 rounded-xl font-semibold hover:bg-orange-500 transition text-lg">
           Get Started
         </button>
-        <button class="border-2 border-teal-500 text-teal-500 px-6 py-4 rounded-xl font-semibold hover:bg-teal-500 hover:text-gray-900 transition text-lg">
+        <a routerLink="/browsecourses" class="border-2 border-teal-500 text-teal-500 px-6 py-4 rounded-xl font-semibold hover:bg-teal-500 hover:text-gray-900 transition text-lg">
           Browse Courses
-        </button>
+        </a>
       </div>
     </div>
 
     <!-- Hero Image -->
     <div class="md:w-1/2 flex justify-center">
-      <img src="https://images.unsplash.com/photo-1596496051845-c42f63a0bda1?auto=format&fit=crop&w=800&q=80"
+      <img [src]="'http://localhost:8000/assets/images/' + image"
            alt="Learning Online" class="rounded-3xl shadow-2xl w-full max-w-lg" />
     </div>
   </section>
@@ -30,43 +30,19 @@
     <h2 class="text-4xl font-bold mb-12 text-center">Featured Courses</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
       <!-- Course Card -->
-      <div class="bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1581092795367-250a1d8db784?auto=format&fit=crop&w=800&q=80" 
+      <div class="bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition overflow-hidden" *ngFor="let c of course">
+        <img [src]="'http://localhost:8000/assets/images/' + c.image"
              alt="Course 1" class="w-full h-52 object-cover" />
         <div class="p-6">
-          <h3 class="text-2xl font-semibold mb-2">Mastering Angular</h3>
-          <p class="text-gray-400 mb-4">Learn Angular from scratch and build modern web apps.</p>
+          <h3 class="text-2xl font-semibold mb-2">{{c.title}}</h3>
+          <p class="text-gray-400 mb-4">{{c.description}}</p>
           <button class="bg-teal-500 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-orange-500 transition">
             Enroll Now
           </button>
         </div>
       </div>
 
-      <!-- Course Card -->
-      <div class="bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1517430816045-df4b7de01c2b?auto=format&fit=crop&w=800&q=80" 
-             alt="Course 2" class="w-full h-52 object-cover" />
-        <div class="p-6">
-          <h3 class="text-2xl font-semibold mb-2">Fullstack Development</h3>
-          <p class="text-gray-400 mb-4">Learn both backend and frontend to become a fullstack developer.</p>
-          <button class="bg-teal-500 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-orange-500 transition">
-            Enroll Now
-          </button>
-        </div>
-      </div>
 
-      <!-- Course Card -->
-      <div class="bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transform hover:-translate-y-3 transition overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1581093448790-62e3b5ffccde?auto=format&fit=crop&w=800&q=80" 
-             alt="Course 3" class="w-full h-52 object-cover" />
-        <div class="p-6">
-          <h3 class="text-2xl font-semibold mb-2">UI/UX Design</h3>
-          <p class="text-gray-400 mb-4">Learn the latest in web and app design with practical projects.</p>
-          <button class="bg-teal-500 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-orange-500 transition">
-            Enroll Now
-          </button>
-        </div>
-      </div>
     </div>
   </section>
 

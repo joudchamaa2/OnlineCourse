@@ -23,6 +23,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'subscription',
+        'subscription_type',
+        'expired_at',
     ];
 
     /**
@@ -46,5 +49,8 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    function courses(){
+        return $this->hasMany(Course::class);
     }
 }

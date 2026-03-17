@@ -10,8 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dash.css',
 })
 export class Dash implements OnInit {
- user:number=0;
+    user:number=0;
     tuser:any;
+    count :number = 0;
     constructor(private http:Server,public rout:Router){}
     ngOnInit(): void {
       const token = localStorage.getItem('token');
@@ -26,6 +27,7 @@ export class Dash implements OnInit {
       return;
     }
     this.admin();
+    this.Count();
     
   }
   admin(){
@@ -41,5 +43,16 @@ export class Dash implements OnInit {
       } 
       }
       )
+    }
+    Count(){
+      
+      this.http.CountCourse().subscribe({
+        next: res => {
+        console.log('API Response:', res);
+        this.count = res.course;
+      },
+    }
+    )
+    
     }
 }

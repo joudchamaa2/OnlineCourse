@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
+
+  <!-- Page Title -->
+  <h1 class="text-4xl font-bold text-gray-800 mb-8">
+    Subscription Plans
+  </h1>
+
+  <!-- Subscription Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center w-full max-w-4xl">
+    <!-- Monthly Plan -->
+    <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition border-2 border-teal-500">
+      <h2 class="text-2xl font-semibold mb-4">Monthly</h2>
+      <p class="text-gray-500 mb-6 text-center">Full access to most courses, including videos and resources.</p>
+      <span class="text-3xl font-bold mb-4">$45<span class="text-lg font-normal">/month</span></span>
+      <button
+        routerLink="/monthly"
+       class="bg-teal-500 text-white px-6 py-3 rounded-xl hover:bg-teal-600 transition">
+        Subscribe
+      </button>
+    </div>
+
+    <!-- Yearly Plan -->
+    <div class="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center hover:shadow-2xl transition">
+      <h2 class="text-2xl font-semibold mb-4">Yearly</h2>
+      <p class="text-gray-500 mb-6 text-center">All courses, premium support, and downloadable resources.</p>
+      <span class="text-3xl font-bold mb-4">$540<span class="text-lg font-normal">/year</span></span>
+      <button
+      routerLink="/yearly"
+      class="bg-teal-500 text-white px-6 py-3 rounded-xl hover:bg-teal-600 transition">
+        Subscribe
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Info Section -->
+  <div class="mt-12 text-center max-w-2xl text-gray-600">
+    <p>
+      Choose the subscription plan that best fits your learning goals. Cancel anytime.
+    </p>
+  </div>
+
+</div>
