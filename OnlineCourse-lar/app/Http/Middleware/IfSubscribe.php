@@ -35,11 +35,7 @@ class IfSubscribe
                 'message' => 'Your subscription has expired'
             ], 403);
         }
-        if($user->subscription &&($user->expired_at === null || Carbon::now()->lessThanOrEqualTo($user->expired_at))){
-            return response()->json([
-                'message'=>"you already have an active subscription ",
-            ],403);
-        }
+        
         return $next($request);
     }
 }

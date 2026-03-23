@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\HomeImage;
 use App\Models\User;
+use App\Models\video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -169,6 +170,38 @@ function images(){
             'line'=>$e->getLine(),
         ],500);
     }
+}
+function GetVideo(video $video){
+    try{
+        $video = video::with('course')->get();
+        return response()->json([
+            'video'=>$video,
+        ],201);
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+    }
+}
+function DeleteVideo(video $video){
+    try{
+        $video->delete();
+        return response()->json([
+            'message '=>"Video deleted successfully",
+        ],201);
+
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+    }
+}
+function EditVideo(video $video){
+    return response()->json([
+        'video'=>$video,
+    ],201);
 }
 }
 
