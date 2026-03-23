@@ -1,0 +1,85 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+
+  <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-2xl">
+
+    <!-- Page Title -->
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">
+      Edit Video
+    </h2>
+
+    <form class="space-y-6">
+
+      <!-- Video Title -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">
+          Video Title
+        </label>
+        <input
+          type="text"
+          value="{{video.title}}"
+          placeholder="Enter video title"
+          class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
+        />
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">
+          Description
+        </label>
+        <textarea
+          rows="4"
+          value="{{video.description}}"
+          placeholder="Enter video description"
+          class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
+        ></textarea>
+      </div>
+
+      <!-- Current Video -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">
+          Current Video
+        </label>
+        <video
+          controls
+          class="w-full h-56 bg-black rounded-xl shadow-md"
+        >
+          <source [src]="'http://localhost:8000/assets/videos/' +video.video">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Change Video -->
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">
+          Change Video
+        </label>
+        <input
+          type="file"
+          title="Upload a new video file"
+          class="w-full border border-gray-300 rounded-xl px-4 py-2 bg-gray-50 cursor-pointer"
+        />
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end space-x-4 pt-4">
+
+        <button
+          type="button"
+          class="bg-gray-400 text-white px-6 py-3 rounded-xl hover:bg-gray-500 transition">
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          class="bg-teal-500 text-white px-6 py-3 rounded-xl hover:bg-teal-600 transition">
+          Update Video
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

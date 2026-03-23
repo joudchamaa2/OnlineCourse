@@ -17,6 +17,8 @@ import { ViewVideo } from './Main/view-video/view-video';
 import { Subscribe } from './Main/subscribe/subscribe';
 import { Monthly } from './subscribe/monthly/monthly';
 import { Yearly } from './subscribe/yearly/yearly';
+import { Managevideo } from './Admin/managevideo/managevideo';
+import { EditVideo } from './Admin/edit-video/edit-video';
 
 
 
@@ -33,7 +35,9 @@ export const routes: Routes = [
             {path:'courses',component:Courses},
             {path:'editcourse/:id',component:Editcourse},
             {path:'image',component:Image},
-            {path:'createvideo/:id',component:CreateVideo}
+            {path:'createvideo/:id',component:CreateVideo},
+            {path:'ManageVideo',component:Managevideo},
+            {path:'editvideo/:id',component:EditVideo},
             
         ]
     },

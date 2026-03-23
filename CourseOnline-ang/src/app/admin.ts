@@ -106,5 +106,29 @@ export class Admin {
       }
     })
   }
+  GetVideo(){
+    const token = localStorage.getItem('token');
+    return this.http.get<any>('http://127.0.0.1:8000/api/admin/GetVideo',{
+      headers:{
+        Authorization:  `Bearer ${token}`,
+      }
+    })
+  }
+  DeleteVideo(id:any){
+    const token = localStorage.getItem('token');
+    return this.http.delete(`http://127.0.0.1:8000/api/admin/video/${id}`,{
+      headers:{
+        Authorization : `Bearer ${token}`,
+      }
+    })
+  }
+  GetVideoById(id:any){
+    const token = localStorage.getItem('token');
+    return this.http.get<any>(`http://127.0.0.1:8000/api/admin/updatevideo/${id}`,{
+      headers:{
+        Authorization : `Bearer ${token}`,
+      }
+    })
+  }
   
 }
