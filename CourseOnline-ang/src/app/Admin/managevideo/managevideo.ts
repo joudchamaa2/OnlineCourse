@@ -17,7 +17,13 @@ export class Managevideo {
     constructor(private http:Admin , public route:Router , private activate : ActivatedRoute){}
 
     ngOnInit(){
-      
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.route.navigate(['/login']);
+      }
+      if(localStorage.getItem('role') != 'admin'){
+        this.route.navigate(['/home']);
+      }
       this.getvideo();
       
     }

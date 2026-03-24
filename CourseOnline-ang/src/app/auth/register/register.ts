@@ -19,6 +19,12 @@ export class Register {
     password:'',
   }
     constructor(private http : Server , public router:Router){}
+    ngOnInit(){
+      const token = localStorage.getItem('token');
+      if(token){
+        this.router.navigate(['/home']);
+      }
+    }
   sendRegister(){
     this.http.register(this.register).subscribe({
       next:(res:any) => {

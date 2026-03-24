@@ -16,6 +16,10 @@ export class ViewCourse {
   videos:any[] = [];
     constructor(public auth:Server , private router:Router , private activate: ActivatedRoute){}
     ngOnInit(){
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
       const id = this.activate.snapshot.paramMap.get('id');
       this.auth.ViewCourse(Number(id)).subscribe({
         next : (res : any) =>  {

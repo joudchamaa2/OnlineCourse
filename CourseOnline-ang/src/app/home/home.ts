@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Server } from '../server';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,16 @@ import { RouterLink } from "@angular/router";
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
+
 export class Home {
     course:any[] = [];
     image:any;
-    constructor(private server:Server){}
+    constructor(private server:Server , public router:Router){}
     ngOnInit(): void {
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
       this.server.home().subscribe({
         next:(res:any)=>{
           this.course = res.course;

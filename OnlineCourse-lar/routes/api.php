@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('api')->group(function(){
 	Route::prefix('auth')->group(function(){
-        Route::post('/register',[AuthController::class,'register']);
-		Route::post('/login',[AuthController::class,'loginPage']);
+	    Route::middleware('isLoggedin')->group(function(){
+            Route::post('/register',[AuthController::class,'register']);
+		    Route::post('/login',[AuthController::class,'loginPage']);
+		});
+        
 		Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 	});
 	Route::middleware('auth:sanctum')->group(function(){

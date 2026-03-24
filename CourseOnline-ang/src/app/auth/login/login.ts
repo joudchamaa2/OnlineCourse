@@ -19,7 +19,14 @@ export class Login{
   error :any;
   constructor(private http:Server , public router:Router){}
   message = ''
+  ngOnInit(){
+    const token = localStorage.getItem('token');
+    if(token){
+      this.router.navigate(['/home']);
+    }
+  }
   sendLogin(){
+    
     this.http.login(this.login).subscribe({
       next:(res:any) => {
         console.log('Success:',res);
@@ -32,9 +39,11 @@ export class Login{
         }
       },
       error:(err)=>{
+        
         this.message = 'Your Email or password is incorrect , Please try again';
         console.error('Error:',err);
         this.error = err;
+        
       }
     })
   }

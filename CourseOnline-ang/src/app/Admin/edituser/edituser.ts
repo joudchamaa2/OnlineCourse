@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Admin } from '../../admin';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -16,8 +16,15 @@ import { FormsModule } from '@angular/forms';
 export class Edituser implements OnInit {
     id:any;
     role:string = '';
-    constructor(private route : ActivatedRoute,private http:Admin){}
+    constructor(private route : ActivatedRoute,private http:Admin , public router : Router){}
     ngOnInit(){
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
+      if(localStorage.getItem('role') != 'admin'){
+        this.router.navigate(['/home']);
+      }
       this.id = this.route.snapshot.paramMap.get('id');
       console.log(this.id);
       

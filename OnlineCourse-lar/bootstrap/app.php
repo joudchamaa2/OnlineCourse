@@ -3,6 +3,7 @@
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\CheckIfAdminAndInst;
 use App\Http\Middleware\IfExpired;
+use App\Http\Middleware\IfLoggedIn;
 use App\Http\Middleware\IfSubscribe;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -26,6 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'AdminAndInst'=>CheckIfAdminAndInst::class,
             'subscribe'=>IfSubscribe::class,
             'expired'=>IfExpired::class,
+            'isLoggedin'=>IfLoggedIn::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

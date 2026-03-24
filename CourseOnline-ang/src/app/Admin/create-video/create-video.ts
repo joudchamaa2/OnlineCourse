@@ -25,6 +25,10 @@ export class CreateVideo {
     constructor(private http:Admin, private route:ActivatedRoute, public router: Router ){}
     ngOnInit(){
       this.id = this.route.snapshot.paramMap.get('id');
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
       
     }
     create(){

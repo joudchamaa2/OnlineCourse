@@ -9,7 +9,9 @@
       <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Learn Modern Skills Online</h1>
       <p class="text-gray-400 text-lg md:text-xl mb-8">Join thousands of students worldwide learning programming, design, and more.</p>
       <div class="flex gap-4">
-        <button class="bg-teal-500 text-gray-900 px-6 py-4 rounded-xl font-semibold hover:bg-orange-500 transition text-lg">
+        <button
+        routerLink="/subscribe"
+        class="bg-teal-500 text-gray-900 px-6 py-4 rounded-xl font-semibold hover:bg-orange-500 transition text-lg">
           Get Started
         </button>
         <a routerLink="/browsecourses" class="border-2 border-teal-500 text-teal-500 px-6 py-4 rounded-xl font-semibold hover:bg-teal-500 hover:text-gray-900 transition text-lg">
@@ -17,14 +19,11 @@
         </a>
       </div>
     </div>
-
-    <!-- Hero Image -->
     <div class="md:w-1/2 flex justify-center">
       <img [src]="'http://localhost:8000/assets/images/' + image"
            alt="Learning Online" class="rounded-3xl shadow-2xl w-full max-w-lg" />
     </div>
   </section>
-
   <!-- Featured Courses -->
   <section class="py-24 px-8 md:px-20">
     <h2 class="text-4xl font-bold mb-12 text-center">Featured Courses</h2>
@@ -36,8 +35,10 @@
         <div class="p-6">
           <h3 class="text-2xl font-semibold mb-2">{{c.title}}</h3>
           <p class="text-gray-400 mb-4">{{c.description}}</p>
-          <button class="bg-teal-500 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-orange-500 transition">
-            Enroll Now
+          <button 
+          [routerLink]="['/viewcourse',c.id]"
+          class="bg-teal-500 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-orange-500 transition">
+            View Course
           </button>
         </div>
       </div>
@@ -50,7 +51,9 @@
   <section class="bg-gray-800 py-24 px-8 md:px-20 text-center rounded-t-3xl">
     <h2 class="text-4xl font-bold mb-4">Start Learning Today</h2>
     <p class="text-teal-500 mb-8 text-lg">Join thousands of students worldwide and upgrade your skills</p>
-    <button class="bg-teal-500 text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 transition text-lg">
+    <button
+    routerLink="/subscribe"
+    class="bg-teal-500 text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-orange-500 transition text-lg">
       Join Now
     </button>
   </section>

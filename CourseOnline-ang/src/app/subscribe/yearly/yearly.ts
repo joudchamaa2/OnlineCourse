@@ -17,7 +17,12 @@ export class Yearly {
   };
 
   constructor(private http: Server, public route: Router) {}
-
+  ngOnInit(){
+    const token = localStorage.getItem('token');
+      if(!token){
+        this.route.navigate(['/login']);
+      }
+  }
   subscribe() {
     const data = { subscription_type: this.plan.subscription_type }; // send JSON
 

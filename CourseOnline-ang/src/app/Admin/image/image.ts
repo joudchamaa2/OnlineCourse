@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Admin } from '../../admin';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-image',
@@ -20,9 +21,16 @@ export class Image implements OnInit {
     }
   }
 
-  constructor(private http: Admin) {}
+  constructor(private http: Admin , public router :Router) {}
 
   ngOnInit() {
+    const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
+      if(localStorage.getItem('role') != 'admin'){
+        this.router.navigate(['/home']);
+      }
     this.getimage();
   }
 

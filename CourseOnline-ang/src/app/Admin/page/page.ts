@@ -12,6 +12,15 @@ import { RouterModule } from '@angular/router';
   styleUrl: './page.css',
 })
 export class Page{
-    
+    constructor(public router : Router){}
+    ngOnInit(){
+      const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
+      if(localStorage.getItem('role') != 'admin'){
+        this.router.navigate(['/home']);
+      }
+    }
   
 }

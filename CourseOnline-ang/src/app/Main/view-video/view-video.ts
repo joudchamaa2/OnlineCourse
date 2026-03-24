@@ -20,7 +20,10 @@ export class ViewVideo {
   ngOnInit() {
     
 
-    // Then fetch video
+    const token = localStorage.getItem('token');
+      if(!token){
+        this.route.navigate(['/login']);
+      }
     const id = this.activate.snapshot.paramMap.get('id');
     this.http.ViewVideo(Number(id)).subscribe({
       next: (res) => {

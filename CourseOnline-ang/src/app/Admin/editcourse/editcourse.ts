@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Admin } from '../../admin';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -24,9 +24,16 @@ export class Editcourse {
     onFileChange(event: any) { 
     this.selectedFile = event.target.files[0];
     } 
-    constructor(private admin:Admin , private activate :ActivatedRoute){}
+    constructor(private admin:Admin , private activate :ActivatedRoute,public router:Router){}
       
       ngOnInit(){
+        const token = localStorage.getItem('token');
+      if(!token){
+        this.router.navigate(['/login']);
+      }
+      if(localStorage.getItem('role') != 'admin'){
+        this.router.navigate(['/home']);
+      }
         const id = this.activate.snapshot.paramMap.get('id');
         this.admin.GetCourseById(Number(id)).subscribe({
           next: (res : any) =>{
