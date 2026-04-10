@@ -27,7 +27,7 @@ export class Createcourse {
     ngOnInit(){
         this.id = this.activate.snapshot.paramMap.get('id');
         console.log(this.id)
-        if(localStorage.getItem('role') !== 'admin' || localStorage.getItem('role') !== 'indtructor'){
+        if(localStorage.getItem('role') != 'admin' && localStorage.getItem('role') != 'indtructor'){
           this.router.navigate(['/home'])
         }
         const token = localStorage.getItem('token');

@@ -22,4 +22,7 @@ class Course extends Model
     public function videos(){
         return $this->hasMany(video::class);
     }
+    public function quizes(){
+        return $this->hasMany(Quiz::class);
+    }
 }

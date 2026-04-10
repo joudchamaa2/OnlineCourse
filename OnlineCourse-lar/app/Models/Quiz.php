@@ -4,15 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class Quiz extends Model
 {
     protected $fillable = [
         'course_id',
-        'title',
-        'description',
-        'video',
         'user_id',
+        'question',
+        'answer',
+        'option1',
+        'option2',
+        'option3',
     ];
+
     public function course(){
         return $this->belongsTo(Course::class);
     }

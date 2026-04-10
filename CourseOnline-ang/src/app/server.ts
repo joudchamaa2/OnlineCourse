@@ -105,5 +105,23 @@ subscribe(data:any){
     withCredentials:true
   })
 }
+createQuiz(data:any , course:any){
+  const token = localStorage.getItem('token');
+  return this.http.post(`http://127.0.0.1:8000/api/quiz/createquiz/${course}`,data,{
+    headers:{
+      Authorization:`Bearer ${token}`,
+      Accept:'application/json',
+    },
+    withCredentials:true
+  })
+}
+getQuiz(course:any){
+  const token = localStorage.getItem('token');
+  return this.http.get<any>(`http://127.0.0.1:8000/api/course/quiz/${course}`,{
+    headers:{
+      Authorization:`Bearer ${token}`,
+    }
+  })
+}
 
 }

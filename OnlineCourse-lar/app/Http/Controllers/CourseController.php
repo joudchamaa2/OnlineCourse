@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Quiz;
 use App\Models\Video;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,6 +88,7 @@ function CreateVideo(Request $request, Course $course){
             'title'=>$fields['title'],
             'description'=>$fields['description'],
             'video'=>$fields['video'],
+            'user_id'=>Auth::id(),
         ]);
         return response()->json([
             'video'=>$video,
@@ -103,9 +104,9 @@ function CreateVideo(Request $request, Course $course){
 }
 function SingleCourse(Course $course){
     try{
-        $courses = Course::with('videos')->find($course);
+        $course->load(['user','videos']);
         return response()->json([
-            'course'=>$courses,
+            'course'=>$course,
         ],201);
     }catch(\Exception $e){
         return response()->json([
@@ -116,10 +117,55 @@ function SingleCourse(Course $course){
 }
 function GetVideo(Video $video){
     try{
-    $videos = Video::with('course')->find($video);
+    $video->load(['course','user']);
+    $videoscourse = Video::where('course_id',$video->course_id)->get();
     return response()->json([
-        'video'=>$videos,
+        'video'=>$video,
+        'videoscourse'=>$videoscourse,
     ],201);
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+    }
+}
+function CreateQuiz(Course $course , Request $request){
+    try{
+        $fields = $request->validate([
+            'question'=>['required','string'],
+            'answer'=>['required','string'],
+            'option1'=>['required','string'],
+            'option2'=>['required','string'],
+            'option3'=>['required','string'],
+        ]);
+
+        $quiz = Quiz::create([
+            'course_id'=>$course->id,
+            'user_id'=>Auth::id(),
+            'question'=>$fields['question'],
+            'answer'=>$fields['answer'],
+            'option1'=>$fields['option1'],
+            'option2'=>$fields['option2'],
+            'option3'=>$fields['option3'],
+        ]);
+        return response()->json([
+            'quiz'=>$quiz,
+        ],201);
+        
+    }catch(\Exception $e){
+        return response()->json([
+            'message'=>$e->getMessage(),
+            'line'=>$e->getLine(),
+        ],500);
+}
+}
+function GetQuiz(Course $course){
+    try{
+        $quizes = Quiz::where('course_id',$course->id)->get();
+        return response()->json([
+            'quizes'=>$quizes,
+        ],201);
     }catch(\Exception $e){
         return response()->json([
             'message'=>$e->getMessage(),

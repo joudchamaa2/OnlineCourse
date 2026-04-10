@@ -99,7 +99,7 @@ export class Admin {
   }
   createvideo(course:number,data:any){
     const token = localStorage.getItem('token');
-    return this.http.post(`http://127.0.0.1:8000/api/admin/course/video/${course}/create`,data,{
+    return this.http.post(`http://127.0.0.1:8000/api/course/video/${course}/create`,data,{
       headers:{
         Authorization: `Bearer ${token}`,
         Accept: 'application/json',

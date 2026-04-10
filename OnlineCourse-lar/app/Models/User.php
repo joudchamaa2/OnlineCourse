@@ -53,4 +53,10 @@ class User extends Authenticatable
     function courses(){
         return $this->hasMany(Course::class);
     }
+    function video(){
+        return $this->hasMany(Video::class);
+    }
+    public function quizes(){
+        return $this->hasMany(Quiz::class);
+    }
 }

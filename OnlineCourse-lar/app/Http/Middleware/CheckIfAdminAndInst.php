@@ -19,7 +19,7 @@ class CheckIfAdminAndInst
         if(Auth::user()->role != 'admin' && Auth::user()->role != 'indtructor'){
             return response()->json([
                 'message'=>'Unauthorized',
-            ]);
+            ],403);
         }
         return $next($request);
     }

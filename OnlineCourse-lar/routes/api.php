@@ -36,16 +36,19 @@ Route::middleware('api')->group(function(){
 		Route::put('/admin/updateCourse/{course}',[AdminController::class,'updatecourse']);
 		Route::post('/admin/image',[AdminController::class,'image']);
 		Route::get('/admin/images',[AdminController::class,'images']);
-		Route::post('/admin/course/video/{course}/create',[CourseController::class,'CreateVideo']);
+		
 		Route::get('/admin/GetVideo',[AdminController::class,'GetVideo']);
 		Route::delete('/admin/video/{video}',[AdminController::class,'DeleteVideo']);
 		Route::get('/admin/updatevideo/{video}',[AdminController::class,'EditVideo']);
 	});
 	Route::middleware(['auth:sanctum','AdminAndInst'])->group(function(){
+		Route::post('/course/video/{course}/create',[CourseController::class,'CreateVideo']);
 		Route::post('/course/create',[CourseController::class,'Create']);
+		Route::post('/quiz/createquiz/{course}',[CourseController::class,'CreateQuiz']);
 	});
 	Route::middleware(['auth:sanctum','subscribe','expired'])->group(function(){
 		Route::get('/course/video/watch/{video}',[CourseController::class,'GetVideo']);
+		Route::get('/course/quiz/{course}',[CourseController::class,'GetQuiz']);
 		
 	});
 });

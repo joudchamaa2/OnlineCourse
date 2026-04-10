@@ -19,7 +19,7 @@ class IfLoggedIn
         
         if($request->user()){
             return response()->json([
-                'message'=>"=you are logged in",
+                'message'=>"you are logged in",
             ],403);
         }
         return $next($request);

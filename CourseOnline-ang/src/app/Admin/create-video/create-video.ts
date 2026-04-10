@@ -26,6 +26,9 @@ export class CreateVideo {
     ngOnInit(){
       this.id = this.route.snapshot.paramMap.get('id');
       const token = localStorage.getItem('token');
+      if(localStorage.getItem('role') != 'admin' && localStorage.getItem('role') != 'indtructor'){
+        this.router.navigate(['/home']);
+      }
       if(!token){
         this.router.navigate(['/login']);
       }

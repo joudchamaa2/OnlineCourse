@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewCourse {
   course : any;
   videos:any[] = [];
+
     constructor(public auth:Server , private router:Router , private activate: ActivatedRoute){}
     ngOnInit(){
       const token = localStorage.getItem('token');
@@ -25,6 +26,7 @@ export class ViewCourse {
         next : (res : any) =>  {
           this.course = res.course;
           this.videos = res.course.videos
+          
           console.log(res);
           
           

@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ViewVideo {
   video: any;
+  videoscourse:any[] = [];
 
   constructor(
     private http: Server,
@@ -18,16 +19,16 @@ export class ViewVideo {
   ) {}
 
   ngOnInit() {
-    
-
-    const token = localStorage.getItem('token');
+    this.activate.params.subscribe(params =>{
+      const id = params['id'];//reload video when id change
+      const token = localStorage.getItem('token');
       if(!token){
         this.route.navigate(['/login']);
       }
-    const id = this.activate.snapshot.paramMap.get('id');
-    this.http.ViewVideo(Number(id)).subscribe({
+      this.http.ViewVideo(Number(id)).subscribe({
       next: (res) => {
         this.video = res.video;
+        this.videoscourse = res.videoscourse;
         console.log(res);
       },
       error: (err) => {
@@ -36,5 +37,6 @@ export class ViewVideo {
     }
     },
   })
+})
 }
 }

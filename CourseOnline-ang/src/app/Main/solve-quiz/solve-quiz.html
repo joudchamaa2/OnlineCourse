@@ -1,0 +1,52 @@
+<div class="min-h-screen bg-gray-100 p-6 md:p-10">
+
+  <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-8">
+
+    <!-- Title -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Quiz</h1>
+      <p class="text-gray-500 mt-2">Choose the correct answer</p>
+    </div>
+
+    <!-- Question -->
+    <div *ngFor="let q of quiz" class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">
+        {{q.question}}
+      </h2>
+
+      <!-- Options -->
+      <div class="space-y-3">
+
+        <label class="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+          <input type="radio" name="q1" class="accent-indigo-600 w-5 h-5">
+          <span class="text-gray-700">{{q.option1}}</span>
+        </label>
+
+        <label class="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+          <input type="radio" name="q1" class="accent-indigo-600 w-5 h-5">
+          <span class="text-gray-700">{{q.option2}}</span>
+        </label>
+
+        <label class="flex items-center gap-3 p-4 border rounded-xl cursor-pointer hover:bg-indigo-50 transition">
+          <input type="radio" name="q1" class="accent-indigo-600 w-5 h-5">
+          <span class="text-gray-700">{{q.option3}}</span>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t my-6"></div>
+
+
+    <!-- Submit -->
+    <div class="flex justify-end">
+      <button
+        class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transition">
+        Submit Quiz
+      </button>
+    </div>
+
+  </div>
+
+</div>

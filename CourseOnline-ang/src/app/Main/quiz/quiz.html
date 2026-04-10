@@ -1,0 +1,104 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+
+  <div class="bg-white w-full max-w-xl rounded-3xl shadow-2xl p-8 space-y-6">
+
+    <!-- Title -->
+     <div class="pt-4">
+          <button
+            type="button"
+            [routerLink]="['/viewcourse',this.id]"
+            class="bg-gray-800 hover:bg-black text-white px-5 py-2 rounded-xl transition">
+            ← Back to Course
+          </button>
+        </div>
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-gray-900">Create Question</h1>
+      <p class="text-gray-500 mt-2">Add a question with its answer</p>
+    </div>
+
+    <!-- FORM -->
+    <form (ngSubmit)="quizcreate()">
+        
+
+      <!-- Question Input -->
+      <div class="mb-4">
+        <label class="block text-gray-700 font-semibold mb-2">
+          Question
+        </label>
+        <input
+          type="text"
+          name="question"
+          [(ngModel)]="quiz.question"
+          required
+          placeholder="Enter your question..."
+          class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+        />
+      </div>
+
+      <!-- Answer Input -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold mb-2">
+          Answer
+        </label>
+        <input
+          type="text"
+          name="answer"
+          [(ngModel)]="quiz.answer"
+          required
+          placeholder="Enter the correct answer..."
+          class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+        />
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold mb-2">
+          Option 1
+        </label>
+        <input
+          type="text"
+          name="option1"
+          [(ngModel)]="quiz.option1"
+          required
+          placeholder="Enter option 1..."
+          class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+        />
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold mb-2">
+          option 2
+        </label>
+        <input
+          type="text"
+          name="answer"
+          [(ngModel)]="quiz.option2"
+          required
+          placeholder="Enter option 2..."
+          class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+        />
+      </div>
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">
+            option 3
+            </label>
+            <input
+            type="text"
+            name="option3"
+            [(ngModel)]="quiz.option3"
+            required
+            placeholder="Enter option 3..."
+            class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition"
+            />
+            </div>
+
+      <!-- Button -->
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white py-3 rounded-xl font-semibold transition shadow-lg">
+        Save Question
+      </button>
+      <h4 [style.color]="message.color">{{ message.text }}</h4>
+
+    </form>
+
+  </div>
+
+</div>

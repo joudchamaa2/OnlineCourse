@@ -19,6 +19,8 @@ import { Monthly } from './subscribe/monthly/monthly';
 import { Yearly } from './subscribe/yearly/yearly';
 import { Managevideo } from './Admin/managevideo/managevideo';
 import { EditVideo } from './Admin/edit-video/edit-video';
+import { Quiz } from './Main/quiz/quiz';
+import { SolveQuiz } from './Main/solve-quiz/solve-quiz';
 
 
 
@@ -35,7 +37,6 @@ export const routes: Routes = [
             {path:'courses',component:Courses},
             {path:'editcourse/:id',component:Editcourse},
             {path:'image',component:Image},
-            {path:'createvideo/:id',component:CreateVideo},
             {path:'ManageVideo',component:Managevideo},
             {path:'editvideo/:id',component:EditVideo},
             
@@ -43,11 +44,15 @@ export const routes: Routes = [
     },
     {path:'createcourse',component:Createcourse},
     {path:'browsecourses' ,component:Browsecourses},
+    {path:'createvideo/:id',component:CreateVideo},
     {path:'viewcourse/:id',component:ViewCourse},
     {path:'viewvideo/:id',component:ViewVideo},
     {path:'subscribe',component:Subscribe},
     {path:'monthly',component:Monthly},
-    {path:'yearly',component:Yearly}
+    {path:'yearly',component:Yearly},
+    {path:'quiz/:id',component:Quiz},
+    {path:'Quiz/:id',component:SolveQuiz}
+
 
     
 ];
